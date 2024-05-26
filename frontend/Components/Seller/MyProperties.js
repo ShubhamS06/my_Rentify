@@ -95,9 +95,9 @@ const MyPropertiesComponent = () => {
                 <>
                     <ul style={{ display: 'flex', gap: "20px", flexWrap: 'wrap' }}>
                         {filteredProperties?.map((property, i) => (
-                            <Link href={`/property/${property._id}`}>
+                            
                                 <PropertyCard property={property} i={i} isSelerPage={true} handleDelete={handleDelete} />
-                            </Link>
+
                         ))}
                     </ul>
                     {/* <Pagination
