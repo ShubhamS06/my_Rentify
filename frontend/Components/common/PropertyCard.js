@@ -12,7 +12,7 @@ function PropertyCard({ property, i, isSelerPage, handleDelete, handleShowIntere
         // This requires a way to track user likes, possibly a field in the property schema
         const checkIfLiked = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/properties/${property._id}/isLiked`, {
+                const res = await axios.get(`${process.env.GET_Properties_URL}/${property._id}/isLiked`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -30,14 +30,14 @@ function PropertyCard({ property, i, isSelerPage, handleDelete, handleShowIntere
         try {
             setLiked(!liked);
             if (liked) {
-                await axios.post(`http://localhost:5000/api/properties/${property._id}/unlike`, {}, {
+                await axios.post(`${process.env.GET_Properties_URL}/${property._id}/unlike`, {}, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
                 setLikes(likes - 1);
             } else {
-                await axios.post(`http://localhost:5000/api/properties/${property._id}/like`, {}, {
+                await axios.post(`${process.env.GET_Properties_URL}/${property._id}/like`, {}, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -50,7 +50,7 @@ function PropertyCard({ property, i, isSelerPage, handleDelete, handleShowIntere
         }
     };
     const handleInterested = () => {
-        axios.post(`http://localhost:5000/api/properties/${property._id}/interested`, {}, {
+        axios.post(`${process.env.GET_Properties_URL}/${property._id}/interested`, {}, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

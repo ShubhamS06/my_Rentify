@@ -86,7 +86,7 @@ exports.deleteProperty = async (req, res) => {
         }
 
         // Optional: Ensure only the owner can delete the property
-        if (property.owner.toString() !== req.user._id) {
+        if (property?.owner?.toString() !== req.user._id) {
             return res.status(401).json({ message: 'User not authorized' });
         }
 

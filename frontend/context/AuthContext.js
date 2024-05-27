@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const router = useRouter();
     const login = async (email, password) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const response = await axios.post(`${process.env.BASE_URL}auth/login`, { email, password });
             setUser(response.data.user);
             if (response.status === 200) {
                 router.push('/')
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', userData);
+            const response = await axios.post(`${process.env.BASE_URL}auth/register`, userData);
             setUser(response.data.user);
             const responseData = JSON.stringify(response?.data?.user);
             localStorage.setItem('userInfo',  JSON.stringify(responseData));
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     };
     const logout = async () => {
         try {
-            await fetch('http://localhost:5000/api/auth/logout', {
+            await fetch(`${process.env.BASE_URL}auth/logout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useAuth } from '../../context/AuthContext';
-import api from '../../utils/api';
+// import api from '../../utils/api';
 import PropertyFilter from '../Buyer/PropertyFilter';
 import { Button, Pagination } from '@mui/material';
 import SideDrawer from '../common/SideDrower';
@@ -12,9 +12,7 @@ import axios from 'axios';
 const MyPropertiesComponent = () => {
     let user;
     const [properties, setProperties] = useState([]);
-    const [filteredProperties, setFilteredProperties] = useState([]);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [totalPages, setTotalPages] = useState(1);
+    const [filteredProperties, setFilteredProperties] = useState([]); 
     const router = useRouter();
 
     useEffect(() => {
@@ -26,7 +24,7 @@ const MyPropertiesComponent = () => {
             return;
         }
 
-        axios.get(`http://localhost:5000/api/properties`, {
+        axios.get(`${process.env.GET_Properties_URL}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -58,7 +56,7 @@ const MyPropertiesComponent = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            await api.delete(`/properties/${propertyId}`, config);
+            await axios.delete(`${process.env.GET_Properties_URL}/${propertyId}`, config);
             setProperties(properties?.filter((property) => property?._id !== propertyId));
         } catch (error) {
             console.log('error', error)

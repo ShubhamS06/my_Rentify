@@ -15,7 +15,7 @@ const SellProperty = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            const response = await axios.post('http://localhost:5000/api/properties', property, config);
+            const response = await axios.post(`${process.env.GET_Properties_URL}`, property, config);
             console.log('Property added successfully:', response.data);
             router.push('/my-properties'); // Redirect to my properties page after adding
         } catch (error) {

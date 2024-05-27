@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function propertyDetails() {
   const handleUpdateProperty = (propertyId, updatedData ) => {
-    axios.put(`http://localhost:5000/api/properties/${propertyId}`, updatedData, {
+    axios.put(`${process.env.GET_Properties_URL}/${propertyId}`, updatedData, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
