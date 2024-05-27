@@ -12,9 +12,9 @@ const PropertyList = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-
+    console.log('process.env.BASE_URL', process.env.GET_Properties_URL)
     useEffect(() => {
-        fetch(`http://localhost:5000/api/properties?page=${currentPage}&limit=5`)
+        fetch(`${process.env.GET_Properties_URL}?page=${currentPage}&limit=5`)
             .then(res => res.json())
             .then(data => {
                 console.log('feting data', data)
@@ -43,7 +43,7 @@ const PropertyList = () => {
     const handleFilterOpen = () => {
         setisFilterOpen((prev) => !prev);
     }
-    
+
     const handleShowInterested = () => {
         setisFilterOpen((prev) => !prev);
     }
@@ -57,9 +57,9 @@ const PropertyList = () => {
                 <>
                     <ul style={{ display: 'flex', gap: "20px", flexWrap: 'wrap', minHeight: "210px" }}>
                         {filteredProperties?.map((property, i) => (
-                            <Link href={`/property/${property._id}`}>
-                               <PropertyCard property={property} i={i} handleShowInterested={handleShowInterested}/>
-                            </Link>
+                            // <Link href={`/property/${property._id}`}>
+                            <PropertyCard property={property} i={i} handleShowInterested={handleShowInterested} />
+                            // </Link>
                         ))}
                     </ul>
                     <Pagination

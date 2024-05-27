@@ -51,7 +51,7 @@ const PropertyDetails = ({ handleUpdateProperty }) => {
 
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/properties/${id}`, {
+                const response = await axios.get(`${process.env.GET_Properties_URL}/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
