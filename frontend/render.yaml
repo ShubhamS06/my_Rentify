@@ -13,4 +13,4 @@ services:
       - key: NEXT_PUBLIC_BASE_URL
         value: https://my-rentify-0zyb.onrender.com
     domains:
-      - https://my-rentify-frontend.onrender.com
+      - https://rentify-dtwu.onrender.com
