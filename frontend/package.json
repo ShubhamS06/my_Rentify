@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",
+    "axios": "^1.7.2",
     "lint-staged": "^15.2.2",
     "next": "latest",
     "react": "18.2.0",
