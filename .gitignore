@@ -6,4 +6,5 @@ frontend/node_modules/
 # Ignore .next directories
 .next/
 frontend/.next/
+frontend/out/
 backend/.next/

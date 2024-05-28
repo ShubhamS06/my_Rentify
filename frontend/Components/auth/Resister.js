@@ -10,7 +10,6 @@ const RegisterComponent = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('buyer'); 
-    console.log('register in component', register)
     const router = useRouter();
     const handleRegister = (e) => {
         e.preventDefault();

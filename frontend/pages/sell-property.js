@@ -16,7 +16,6 @@ const SellProperty = () => {
                 },
             };
             const response = await axios.post(`${process.env.BASE_URL}/api/properties`, property, config);
-            console.log('Property added successfully:', response.data);
             router.push('/my-properties'); // Redirect to my properties page after adding
         } catch (error) {
             console.error('Error adding property:', error.response ? error.response.data : error.message);

@@ -14,12 +14,10 @@ export default function MyHeader() {
     userInfo = JSON.parse(userInfo);
     setUserInfo(userInfo)
   }, [])
-  console.log('user localStorage.getItem',   user)
   const handleLogout = () => {
     logout();
     router.push('/login');
   };
-  console.log('user', user)
   return (
     <div className={styles.root}>
       <Link href="/" style={{display:'flex', alignItems:"center", gap:'20px'}}>

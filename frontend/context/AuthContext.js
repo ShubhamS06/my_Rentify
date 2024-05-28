@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
     const setUserInfo=(user)=>{
         setUser(user)
     }
-    console.log('user', user)
     const router = useRouter();
     const login = async (email, password) => {
         try {
@@ -19,10 +18,8 @@ export const AuthProvider = ({ children }) => {
                 router.push('/')
             }
             const responseData = JSON.stringify(response.data.user);
-            console.log('response data type:',typeof responseData);
             localStorage.setItem('userInfo', JSON.stringify(responseData));
             localStorage.setItem('token', response.data.token); // Save the token in local storage
-            console.log('response register', response) // Save the token in local storage
         } catch (error) {
             console.error('Login error:', error.response ? error.response.data : error.message);
         }
@@ -34,8 +31,7 @@ export const AuthProvider = ({ children }) => {
             setUser(response.data.user);
             const responseData = JSON.stringify(response?.data?.user);
             localStorage.setItem('userInfo',  JSON.stringify(responseData));
-            localStorage.setItem('token', response.data.token); // Save the token in local storage
-            console.log('response register', response)
+            localStorage.setItem('token', response.data.token); 
         } catch (error) {
             console.error('Registration error:', error.response ? error.response.data : error.message);
         }

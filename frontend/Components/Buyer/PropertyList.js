@@ -12,21 +12,17 @@ const PropertyList = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    console.log('process.env.BASE_URL', process.env.BASE_URL)
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            console.log(window.innerWidth);
             fetch(`${process.env.BASE_URL}/api/properties?page=${currentPage}&limit=5`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log('feting data', data)
                     setProperties(data.properties);
                     setFilteredProperties(data.properties);
                     setTotalPages(data.totalPages);
                 });
           }
     }, [currentPage]);
-    console.log('filteredProperties', filteredProperties)
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };

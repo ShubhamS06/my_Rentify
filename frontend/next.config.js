@@ -12,4 +12,5 @@ module.exports = {
         GET_Properties_URL: `${BASE_URL}/api/properties/`,
         BASE_URL:  BASE_URL,
     },
+    output: 'export',
 }

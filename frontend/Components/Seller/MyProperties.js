@@ -18,7 +18,6 @@ const MyPropertiesComponent = () => {
     useEffect(() => {
         user = JSON.parse(localStorage.getItem("userInfo"));
         user = JSON.parse(user);
-        console.log('user', user)
         if (!user) {
             router.push('/login');
             return;
@@ -31,7 +30,6 @@ const MyPropertiesComponent = () => {
         })
             .then(res => {
                 setProperties(res.data.properties);
-                console.log('res.data.properties', res.data.properties)
                 const userProperties = filterPropertiesByUserId(res.data.properties, user._id);
                 setFilteredProperties(userProperties);
                 // setTotalPages(res.data.totalPages);
@@ -82,7 +80,6 @@ const MyPropertiesComponent = () => {
         setisFilterOpen((prev) => !prev);
 
     }
-    console.log('filteredProperties', filteredProperties, properties)
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: "20px", justifyContent: 'center', alignItems: 'center', }}>
             <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center", width: '95%', padding: "20px 50px" }}>

@@ -32,7 +32,6 @@ const PropertyDetails = ({ handleUpdateProperty }) => {
     const { id } = router.query;
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('property._id, property', property._id, property)
         handleUpdateProperty(property._id, property);
         setOnEditClick(false);
         fetchProperty();
@@ -43,7 +42,6 @@ const PropertyDetails = ({ handleUpdateProperty }) => {
     }, [router, id])
 
     useEffect(() => {
-        console.log('user infor kjkjkj==', user)
         if (!user) {
             router.push('/login');
             return;
@@ -56,7 +54,6 @@ const PropertyDetails = ({ handleUpdateProperty }) => {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
-                console.log('response', response)
                 setProperty(response.data);
                 setLoading(false);
             } catch (error) {
@@ -69,10 +66,8 @@ const PropertyDetails = ({ handleUpdateProperty }) => {
             fetchProperty();
         }
     }, [user]);
-    console.log('property', property)
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
-    console.log('property.userId == user?._id', property.userId, user?._id)
     return (
         <div>
             <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center", width: '95%', padding: "20px 50px" }}>

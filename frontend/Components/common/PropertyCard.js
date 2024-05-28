@@ -14,7 +14,6 @@ function PropertyCard({ property, i, isSelerPage, handleDelete, handleShowIntere
             try {
                 let res;
                 if (typeof window !== 'undefined') {
-                    console.log(window.innerWidth);
                     res = await axios.get(`${process.env.BASE_URL}/api/properties/${property._id}/isLiked`, {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem('token')}`
