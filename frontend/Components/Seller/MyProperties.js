@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useAuth } from '../../context/AuthContext';
-// import api from '../../utils/api';
+import api from '../../utils/api';
 import PropertyFilter from '../Buyer/PropertyFilter';
 import { Button, Pagination } from '@mui/material';
 import SideDrawer from '../common/SideDrower';
@@ -12,7 +12,9 @@ import axios from 'axios';
 const MyPropertiesComponent = () => {
     let user;
     const [properties, setProperties] = useState([]);
-    const [filteredProperties, setFilteredProperties] = useState([]); 
+    const [filteredProperties, setFilteredProperties] = useState([]);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [totalPages, setTotalPages] = useState(1);
     const router = useRouter();
 
     useEffect(() => {
@@ -90,9 +92,9 @@ const MyPropertiesComponent = () => {
                 <>
                     <ul style={{ display: 'flex', gap: "20px", flexWrap: 'wrap' }}>
                         {filteredProperties?.map((property, i) => (
-                            
+                            <Link href={`/property/${property._id}`}>
                                 <PropertyCard property={property} i={i} isSelerPage={true} handleDelete={handleDelete} />
-
+                            </Link>
                         ))}
                     </ul>
                     {/* <Pagination

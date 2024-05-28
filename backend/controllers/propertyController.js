@@ -86,7 +86,7 @@ exports.deleteProperty = async (req, res) => {
         }
 
         // Optional: Ensure only the owner can delete the property
-        if (property?.owner?.toString() !== req.user._id) {
+        if (property.owner.toString() !== req.user._id) {
             return res.status(401).json({ message: 'User not authorized' });
         }
 
@@ -99,78 +99,3 @@ exports.deleteProperty = async (req, res) => {
 };
 
 
-
-exports.likeProperty = async (req, res) => {
-    try {
-        const property = await Property.findById(req.params.id);
-        if (!property) {
-            return res.status(404).json({ message: 'Property not found' });
-        }
-        property.likes = (property.likes || 0) + 1;
-        await property.save();
-        res.status(200).json(property);
-    } catch (err) {
-        res.status(500).json({ error: 'Server error' });
-    }
-};
-
-exports.unlikeProperty = async (req, res) => {
-    try {
-        const property = await Property.findById(req.params.id);
-        if (!property) {
-            return res.status(404).json({ message: 'Property not found' });
-        }
-        property.likes = (property.likes || 0) - 1;
-        await property.save();
-        res.status(200).json(property);
-    } catch (err) {
-        res.status(500).json({ error: 'Server error' });
-    }
-};
-
-exports.checkIfLiked = async (req, res) => {
-    try {
-        const property = await Property.findById(req.params.id);
-        if (!property) {
-            return res.status(404).json({ message: 'Property not found' });
-        }
-        const liked = property.likedBy.includes(req.user.id); // Assuming there's a likedBy array in the schema
-        res.status(200).json({ liked });
-    } catch (err) {
-        res.status(500).json({ error: 'Server error' });
-    }
-};
-
-exports.userInterestedProperty = async (req, res) => {
-    try {
-        const property = await Property.findById(req.params.id).populate('user');
-        const buyer = req.user;
-
-        if (!property) {
-            return res.status(404).json({ message: 'Property not found' });
-        }
-
-        // Send email to buyer with seller's contact details
-        const buyerMailOptions = {
-            from: process.env.EMAIL_USER,
-            to: buyer.email,
-            subject: 'Property Interest Details',
-            text: `You are interested in the property: ${property.place}. Contact details of the seller: ${property.user.email}`
-        };
-
-        // Send email to seller with buyer's contact details
-        const sellerMailOptions = {
-            from: process.env.EMAIL_USER,
-            to: property.user.email,
-            subject: 'Buyer Interest Details',
-            text: `A buyer is interested in your property: ${property.place}. Contact details of the buyer: ${buyer.email}`
-        };
-
-        await transporter.sendMail(buyerMailOptions);
-        await transporter.sendMail(sellerMailOptions);
-
-        res.status(200).json({ message: 'Interest email sent successfully' });
-    } catch (err) {
-        res.status(500).json({ error: 'Server error' });
-    }
-};

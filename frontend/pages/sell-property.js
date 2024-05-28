@@ -31,17 +31,3 @@ const SellProperty = () => {
 };
 
 export default SellProperty;
-
-
-// import React from 'react'
-// import PropertyForm from '../Components/Seller/PropertyForm'
-
-// function SellProperty() {
-//   return (
-//     <div>
-//         <PropertyForm onSubmit={onSubmit}/>
-//     </div>
-//   )
-// }
-
-// export default SellProperty

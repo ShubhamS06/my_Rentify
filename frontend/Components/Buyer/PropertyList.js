@@ -42,7 +42,7 @@ const PropertyList = () => {
     const handleFilterOpen = () => {
         setisFilterOpen((prev) => !prev);
     }
-
+    
     const handleShowInterested = () => {
         setisFilterOpen((prev) => !prev);
     }
@@ -56,9 +56,9 @@ const PropertyList = () => {
                 <>
                     <ul style={{ display: 'flex', gap: "20px", flexWrap: 'wrap', minHeight: "210px" }}>
                         {filteredProperties?.map((property, i) => (
-                            // <Link href={`/property/${property._id}`}>
-                            <PropertyCard property={property} i={i} handleShowInterested={handleShowInterested} />
-                            // </Link>
+                            <Link href={`/property/${property._id}`}>
+                               <PropertyCard property={property} i={i} handleShowInterested={handleShowInterested}/>
+                            </Link>
                         ))}
                     </ul>
                     <Pagination

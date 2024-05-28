@@ -9,8 +9,6 @@ const propertySchema = new mongoose.Schema({
     bathrooms: { type: Number, required: true },
     nearbyHospitals: { type: String, required: true },
     nearbyColleges: { type: String, required: true },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    likes: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model('Property', propertySchema);
